@@ -1,0 +1,8 @@
+.header {
+    background-color: black;
+    height: 100px;
+}
+.header-title {
+    color: white;
+    padding: 20px 0 0 35px;
+}
