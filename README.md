@@ -20,7 +20,7 @@ A simple full-stack task tracker build with React, Bootstrap, Express, and SQLit
 - run "node insertSampleData.js" # to create and populate db with sample data
 - run "node server.js" # run main backend
 ### Frontend
-cd flox-task-tracker
+- cd flox-task-tracker
 - run npm install
 - run npm start
 - access http://localhost:3000
