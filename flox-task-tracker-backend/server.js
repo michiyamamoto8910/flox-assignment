@@ -2,9 +2,15 @@ const express = require('express');
 const app = express();
 const port = 8080;
 const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors');
 
+// allow request only from localhost:3000
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 app.use(express.json());
 
+//for testing only
 app.get('/', (req, res) => {
     res.send('Task tracker backend is running!')
 })
@@ -31,10 +37,10 @@ db.run(`
 `);
 
 app.post('/addTask', (req, res) => {
-    const {title, description} = req.body;
+    const {title, description, completed} = req.body;
 
-    const sql = `INSERT INTO tasks (title, description) VALUES (?, ?)`;
-    const params = [title, description];
+    const sql = `INSERT INTO tasks (title, description, completed) VALUES (?, ?, ?)`;
+    const params = [title, description, completed];
 
     db.run(sql, params, function (err) {
         if(err) {
@@ -44,7 +50,7 @@ app.post('/addTask', (req, res) => {
                 id: this.lastID,
                 title: title,
                 description: description,
-                completed: 0
+                completed: completed
             })
         }
     })
